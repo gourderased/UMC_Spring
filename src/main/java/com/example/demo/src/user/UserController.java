@@ -88,6 +88,9 @@ public class UserController {
         try {
             // TODO: 로그인 값들에 대한 형식적인 validatin 처리해주셔야합니다!
             // TODO: 유저의 status ex) 비활성화된 유저, 탈퇴한 유저 등을 관리해주고 있다면 해당 부분에 대한 validation 처리도 해주셔야합니다.
+            if(!isRegexEmail(postLoginReq.getEmail())) {
+                return new BaseResponse<>(POST_USERS_INVALID_EMAIL);
+            }
             PostLoginRes postLoginRes = userProvider.logIn(postLoginReq);
             return new BaseResponse<>(postLoginRes);
         } catch (BaseException exception) {
@@ -160,8 +163,8 @@ public class UserController {
     @PatchMapping("/{userIdx}")
     public BaseResponse<String> modifyUserName(@PathVariable("userIdx") int userIdx, @RequestBody User user) {
         try {
-/**
-  *********** 해당 부분은 7주차 - JWT 수업 후 주석해체 해주세요!  ****************
+
+  /*********** 해당 부분은 7주차 - JWT 수업 후 주석해체 해주세요!  ****************/
             //jwt에서 idx 추출.
             int userIdxByJwt = jwtService.getUserIdx();
             //userIdx와 접근한 유저가 같은지 확인
@@ -169,8 +172,8 @@ public class UserController {
                 return new BaseResponse<>(INVALID_USER_JWT);
             }
             //같다면 유저네임 변경
-  **************************************************************************
- */
+  /**************************************************************************/
+
             PatchUserReq patchUserReq = new PatchUserReq(userIdx, user.getNickname());
             userService.modifyUserName(patchUserReq);
 

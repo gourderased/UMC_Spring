@@ -30,6 +30,8 @@ public enum BaseResponseStatus {
     POST_USERS_INVALID_EMAIL(false, 2016, "이메일 형식을 확인해주세요."),
     POST_USERS_EXISTS_EMAIL(false,2017,"중복된 이메일입니다."),
 
+    // [POST] /boards
+    POST_BOARDS_EMPTY_TITLE(false, 2018, "제목은 두 글자 이상으로 작성해주세요."),
 
 
     /**
@@ -52,6 +54,9 @@ public enum BaseResponseStatus {
 
     //[PATCH] /users/{userIdx}
     MODIFY_FAIL_USERNAME(false,4014,"유저네임 수정 실패"),
+
+    //[PATCH] /users/{boardIdx}
+    MODIFY_FAIL_BOARDTITLE(false, 4015, "게시글 제목 수정 실패"),
 
     PASSWORD_ENCRYPTION_ERROR(false, 4011, "비밀번호 암호화에 실패하였습니다."),
     PASSWORD_DECRYPTION_ERROR(false, 4012, "비밀번호 복호화에 실패하였습니다.");
